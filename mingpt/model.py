@@ -84,11 +84,11 @@ class Block(nn.Module):
         )
     
     def forward(self, x):
-        x = x + self.attn(self.ln1(x))
-        x = x + self.mlp(self.ln2(x))
+        # x = x + self.attn(self.ln1(x))
+        # x = x + self.mlp(self.ln2(x))
         
-        # x = self.ln1(self.attn(x) + x)
-        # x = self.ln2(self.mlp(x) + x)
+        x = self.ln1(self.attn(x) + x)  # my modification
+        x = self.ln2(self.mlp(x) + x)
 
         return x
 
